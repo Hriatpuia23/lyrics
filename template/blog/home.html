@@ -1,0 +1,59 @@
+{% extends 'blog/base.html' %}
+{% load hitcount_tags %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-6 col-md-8 col-lg-8">
+        <div class="card">
+            <div class="card-header text-center bg-secondary text-white">
+                Songs
+            </div>
+            <div class="card-body">
+                {% for post in posts %}
+                <h6 class="card-title"> <a href="{% url 'detail' post.id post.slug %}">{{ post.artist|capfirst }} - {{ post.title|capfirst }}
+                </a></h6>
+                 {% if forloop.counter == 10 %}
+                    <br><i><p><a href="{% url 'song-list' %}">See more Songs..</a></p></i>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 col-lg-2">
+        <div class="card">
+            <div class="card-header text-center bg-secondary text-white">
+                Albums
+            </div>
+            <div class="card-body text-center">
+
+                {% for post in album_list %}
+                <h6 class="card-title"><a href="{% url 'album' post.album %}">{{ post.album|upper }}</a></h6>
+                {% if forloop.counter == 10 %}
+                <br><i><p><a href="{% url 'al-list' %}">See more Albums..</a></p></i>
+                {% endif %}
+                {% endfor %}
+                <!--{{ forloop.counter }}. -->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-2">
+        <div class="card">
+            <div class="card-header text-center bg-secondary text-white">
+                Artists
+            </div>
+            <div class="card-body">
+                {% for post in artist_list %}
+                <h6 class="card-title"><a href="{% url 'artist' post.artist_name %}">{{ post.artist_name|capfirst }}</a>
+                </h6>
+                {% if forloop.counter == 10 %}
+                <i><p><a href="{% url 'ar-list' %}">See more Artists..</a></p></i>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+   </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+body {
+background-color: #efedf5;
+font-family: 'PT Serif', serif;
+}
+
+.card {
+padding: 5px;
+margin-top: 25px;
+padding-bottom: 30px;
+}
+
+hr{
+margin: -1px;
+width: 100%;
+background-color: white;
+}
+.cus {
+padding: 5px;
+ position: relative;
+ right: 15%;
+ left: 15%;
+ bottom: 0;
+ width: 70%;
+ color: white;
+ margin-top: 100px;
+ text-align: center;
+ border-radius: 20%;
+}

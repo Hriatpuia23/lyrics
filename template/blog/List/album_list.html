@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header text-center bg-secondary text-white">
+                    Albums
+                </div>
+                <div class="card-body">
+                    {% for post in album %}
+                    <h6 class="card-title">{{forloop.counter0|add:page_obj.start_index}}.<a href="{% url 'album' post.album %}"> {{ post.album|upper }}</a></h6>
+                    {% endfor %}
+                </div>
+            </div>
+            {% include 'blog/pagination.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

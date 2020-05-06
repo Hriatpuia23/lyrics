@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+{% load hitcount_tags %}
+{% block detail %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+
+                <div class="card-header text-center bg-secondary text-white">
+                    {{ post.artist|capfirst }} - {{ post.title|capfirst }} lyrics &emsp;&emsp;|&emsp;&emsp; Views: {% get_hit_count for post %}
+                </div>
+
+                <div class="card-body">
+                    <small class="card-title">
+                        {% if post.artists %}
+                        Artist: <a href="{% url 'artist' post.artists %}">{{ post.artists|capfirst }}</a>
+                        {% else %}
+                        Artist: {{ post.artist }}
+                        {% endif %}
+                        <br>Title: {{ post.title|capfirst }}
+
+                        {% if post.albums %}
+                        <br>Album:<a href="{% url 'album' post.albums %}"> {{ post.albums|upper }}</a>
+                        {% endif %}
+                    </small>
+                    <p class="card-text">
+                    <center>{{ post.content|linebreaks }}</center>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="cus bg-info text-white">
+    <small>
+        {% if post.artists %}
+        {{post.artists|capfirst}} lyrics are property and copyright of their owners. "{{post.title|capfirst}}" lyrics provided for educational purposes and
+        personal use only.<br>
+        {% else %}
+        {{post.artist|capfirst}} lyrics are property and copyright of their owners. "{{post.title|capfirst}}" lyrics provided for educational purposes and
+        personal use only.<br>
+        {% endif %}
+    </small>
+
+    <!-- Copyright --><hr>
+    © 2020 Copyright:
+    <a href="" class="text-white"> LyricsHere.com</a>
+    <!-- Copyright -->
+</footer>
+{% endblock detail %}
