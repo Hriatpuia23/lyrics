@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Album, Artist
 from django.views.generic import (
     ListView,
@@ -12,6 +12,7 @@ from .forms import SubmitLyric
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from hitcount.views import HitCountDetailView
+from django.contrib import messages
 
 
 class PostListView(ListView):
@@ -119,14 +120,14 @@ def mail(request):
         name = request.POST['name']
         user_email = request.POST['email']
         message = request.POST['message']
-
         send_mail(
             name,
             message,
             user_email,
             ['hriatahpa6@gmail.com']
         )
-        return render(request, 'blog/email_form.html', {'name': name})
+        messages.info(request, 'Thanks ' + name + ' ! We received your email and will respond shortly...')
+        return redirect('send_mail')
     else:
         return render(request, 'blog/email_form.html', {})
 
